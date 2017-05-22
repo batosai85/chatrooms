@@ -1,0 +1,1 @@
+Simple chat application created using Node, Socket.io and Jquery. You can create users, edit users, create chatrooms, edit chatrooms. Install dependencies with npm install command.
