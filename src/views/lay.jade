@@ -1,0 +1,48 @@
+doctype html
+html(lang='en')
+    head
+        meta(charset='utf-8')
+        meta(name='viewport', content='width=device-width, initial-scale=1.0')
+        title= title 
+        link(href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet")
+        link(rel="stylesheet", href="/dist/css/styles.css")
+    body
+     nav.navbar.navbar-inverse.navbar-fixed-top
+      .container
+       .navbar-header
+        button.navbar-toggle.collapsed(type='button', data-toggle='collapse', data-target='#navbar', aria-expanded='false', aria-controls='navbar')
+            span.sr-only Toggle navigation
+            span.icon-bar
+            span.icon-bar
+            span.icon-bar
+       div#navbar.collapse.navbar-collapse       
+        ul.nav.navbar-nav
+         li
+           a(href='/home') Home
+         li
+           a(href='/chatrooms') Chat Rooms  
+         li
+           a(href="/all-users") All Users 
+         li
+           a(href="/edit-profile/" + user.username) Edit profile
+        ul.nav.navbar-nav.navbar-right
+         li.dropdown
+          a.dropdown-toggle(href="#",data-toggle="dropdown",role="button",aria-haspopup="true",aria-expanded="false") Users online: 
+           span.users-online
+           | #{' '}
+           span.caret.dropdown
+          ul.dropdown-menu.show-users
+         li  
+          a.logout(href="#") Logout 
+           span.username #{user.username} 
+      
+     div.container(style='margin-top:70px;')
+       .main-content.text
+         block content
+     
+     script(src='/dist/js/vendor.bundle.js')
+     script(src='/socket.io/socket.io.js')
+     script(src='/dist/js/bundle.js')
+    
+      
+       

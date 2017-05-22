@@ -1,0 +1,17 @@
+extends lay
+block content
+   div.container
+    h1 Edit room : 
+    h1.error Empty fields are not allowed :(
+    div.col-md-6.col-md-offset-3
+     form
+        label(for="name") Room
+        input(name="name", type="text", placeholder= name).form-control
+        h4.show-message.response Room name must be unique
+        br
+        label(for="description") Description
+        input(name="description", type="text", placeholder= description).form-control
+        br
+        button.btn.btn-primary.edit Edit room
+        span       
+        a(href="/home").btn.btn-warning Cancel

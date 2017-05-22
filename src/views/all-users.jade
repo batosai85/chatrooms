@@ -1,0 +1,28 @@
+extends lay
+block content
+ .container
+  h1.text-center Users
+  br
+   
+  table.table.table-hover
+   tr
+    th Username
+    th Email
+    th Role
+    th Status
+    th Actions 
+   each us in users 
+    tr
+     td= us.username
+     td= us.email
+     td= us.role
+     td(class='#{us.login}')= us.login
+     td
+      if user.role ==  "admin"
+       a.btn.edit-user(href="#" style="margin-right:2px") admin
+       a.btn.edit-user(href="#" style="margin-right:2px") subscriber
+       a.btn.glyphicon.glyphicon-remove.remove-user(href="#") 
+      else
+       span admin area
+      
+     

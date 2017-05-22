@@ -1,0 +1,56 @@
+doctype html
+html(lang='en')
+ head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title 
+    link(rel='stylesheet', href='/bootstrap/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/css/css.css')
+    link(rel='stylesheet', href='/css/auth.css')
+ body
+  .container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.empty Empty fields are not allowed :(
+        h1.usererror Use dont exist :(
+        h1.error Error 404 :(
+        br
+        br
+        .panel.panel-login
+          .panel-heading
+            .row
+              .col-xs-6
+                a#login-form-link.active(href='#') Login
+              .col-xs-6
+                a#register-form-link(href='#') Register
+            hr
+          .panel-body
+            .row
+              .col-lg-12
+                form#login-form(style='display: block;')
+                  .form-group
+                    input#username.form-control.logusername(type='text', name='username', tabindex='1', placeholder='Username')
+                  .form-group
+                    input#password.form-control.logpassword(type='password', name='password', tabindex='2', placeholder='Password')
+                  .form-group
+                    .row
+                      .col-sm-6.col-sm-offset-3
+                        button#login-submit.form-control.btn.btn-login Login
+                form#register-form(style='display: none;')
+                  .form-group
+                    input#username.form-control.signusername(type='text', name='username', tabindex='1', placeholder='Username')
+                    h4.show-message.response username must be unique
+                  .form-group
+                    input#email.form-control.signemail(type='email', name='email', tabindex='1', placeholder='Email Address')
+                  .form-group
+                    input#password.form-control.signpassword(type='password', name='password', tabindex='2', placeholder='Password')
+                  .form-group
+                    input#confirm-password.form-control.confpassword(type='password', name='confirm-password', tabindex='2', placeholder='Confirm Password')
+                  .form-group
+                    .row
+                      .col-sm-6.col-sm-offset-3
+                        button#register-submit.form-control.btn.btn-register.register Register
+                        
+    script(src='/jquery/jquery.min.js')
+    script(src='/bootstrap/js/bootstrap.min.js')
+    script(src='/js/auth.js')

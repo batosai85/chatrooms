@@ -1,0 +1,59 @@
+doctype html
+html(lang='en')
+ head
+    meta(charset='utf-8')
+    meta(name='viewport', content='width=device-width, initial-scale=1.0')
+    title= title 
+    link(href="https://fonts.googleapis.com/css?family=Architects+Daughter" rel="stylesheet")
+    link(rel="stylesheet", href="/dist/css/styles.css")
+ body
+  .container
+    .row
+      .col-md-6.col-md-offset-3
+        h1.empty Empty fields are not allowed :(   
+        h1.empty-jade #{userEmpty}
+        h1.usererror User dont exist :(
+        h1.exist-jade #{userExist}
+        h1.error Error 404 :(
+        br
+        br
+        .panel.panel-login
+          .panel-heading
+            .row
+              .col-xs-6
+                a#login-form-link.active(href='#') Login
+              .col-xs-6
+                a#register-form-link(href='#') Register
+            hr
+          .panel-body
+            .row
+              .col-lg-12
+                form#login-form(name="loginForm" method="POST" style='display: block;')
+                  .form-group
+                    input#username.form-control.logusername(type='text', name='logusername', tabindex='1', placeholder='Username')
+                  .form-group
+                    input#password.form-control.logpassword(type='password', name='logpassword', tabindex='2', placeholder='Password')
+                  .form-group
+                    .row
+                      .col-sm-6.col-sm-offset-3
+                        input(type="submit", value="Login")#login-submit.form-control.btn.btn-login 
+                form#register-form(style='display: none;')
+                  h4.show-message.response username or email already exist
+                  .form-group
+                    input#username.form-control.signusername(type='text', name='username', tabindex='1', placeholder='Username')
+                  .form-group
+                    input#email.form-control.signemail(type='email', name='email', tabindex='1', placeholder='Email Address')
+                    h4.show-message.email use valid email address
+                  .form-group
+                    input#password.form-control.signpassword(type='password', name='password', tabindex='2', placeholder='Password')
+                  .form-group
+                    input#confirm-password.form-control.confpassword(type='password', name='confirm-password', tabindex='2', placeholder='Confirm Password')
+                    h4.show-message.match passwords must be the same
+                  .form-group
+                    .row
+                      .col-sm-6.col-sm-offset-3
+                        button#register-submit.form-control.btn.btn-register.register Register
+                        
+    script(src='/dist/js/vendor.bundle.js')
+    script(src='/socket.io/socket.io.js')
+    script(src='/dist/js/bundle.js')

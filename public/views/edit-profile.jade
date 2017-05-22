@@ -1,0 +1,31 @@
+extends lay
+block content
+ div.container
+  h1.edit-empty Empty fields are not allowed :(
+  div.col-md-4.col-md-offset-4.text-center(style="margin-top:50px;")
+      each us in user 
+       h1 Edit profile :
+        span.username.edit-span  #{us.username}
+       br
+       form
+        .form-group
+         h4.show-message.edit-response username or email already exist
+         input.form-control.editusername(type="text" name="username" value = "" + us.username)
+        br
+        .form-group
+         input.form-control.editemail(type="email" name="email" value = "" + us.email )
+         h4.show-message.check-email use valid email address
+        br
+        .form-group
+         input.form-control.editpassword(type="password" name="password" value = "" + us.password)
+        br
+        .form-group
+         input.form-control.editconfpassword(type="password" name="confpassword" value = "" + us.password)
+         h4.show-message.edit-match passwords must be the same
+        br
+        button.btn.edit-profile Edit
+        span       
+        a(href="/home").btn Cancel 
+       
+      
+      

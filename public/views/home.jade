@@ -1,0 +1,31 @@
+extends lay
+block content
+     div.container
+      h1 Chat rooms :
+      br
+      br
+      div.col-md-8.col-md-offset-2
+       table.table.table-hover.table-striped
+        th 
+         h3 Rooms
+        th
+         h3 Descriptions
+        th 
+         h3 Actions
+        each room in rooms
+         tr.tr
+          td
+           h4=room.name
+          td
+           h4=room.description
+          td
+           if user.role === "admin"
+            span 
+             a(href="/edit/#{room.name}-#{room.description}")
+              button.btn.glyphicon.glyphicon-pencil(style="margin-right:2px;") 
+            span
+              button.btn.glyphicon.glyphicon-remove.remove-room
+           else
+            span admin area
+      div.col-md-12
+       a(href="/create").btn.btn-primary.btn-create Create room

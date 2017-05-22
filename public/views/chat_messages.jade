@@ -1,0 +1,28 @@
+extends lay
+block content 
+    .container
+        h1.col-md-3 Chat Room : 
+        h1.col-md-3.get-room= room 
+        br
+        hr.col-md-12
+    .col-md-4
+     label Choose room :
+     ul.list-group
+      each room in rooms
+       a(href="/chatrooms/#{room.name}/messages")    
+        li.list-group-item.room=  room.name
+       br
+    div.col-md-8
+     div.col-md-5
+      label(for="message") Your message : 
+      textarea(name="message" rows="15").form-control.message
+      br
+      button.btn.btn-primary.send Send Message
+     div.col-md-7
+      label Chat messages :
+      div.form-control.display
+       each message in messages
+        h3.username.count= message.user
+        h4= message.message
+      br
+      button.btn.btn-danger.delete Delete Messages
