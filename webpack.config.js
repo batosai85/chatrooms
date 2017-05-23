@@ -27,7 +27,7 @@ module.exports = {
                 loader: ExtractTextPlugin.extract({
                     use : [{  
                            loader : "css-loader",
-                           options : {url:false,minimize: true}
+                           options : {minimize: true}
                         },
                         "autoprefixer-loader",
                     ],
@@ -40,7 +40,7 @@ module.exports = {
                 use: ExtractTextPlugin.extract({
                     use : [{  
                             loader : "css-loader",
-                            options : {url:false,minimize: true}
+                            options : {minimize: true}
                           },     
                           "autoprefixer-loader",
                           "less-loader"
@@ -57,12 +57,17 @@ module.exports = {
                 },
                 exclude: /node_modules/
             },
-            {
-                test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
-                loader: "file-loader",
-                options: {
-                    name: './fonts/[name].[ext]'
-                }
+            { test: /\.woff(2)?(\?v=[0-9]\.[0-9]\.[0-9])?$/,
+              loader: "url-loader?limit=10000&mimetype=application/font-woff",
+              options: {
+                 name: './fonts/[name].[ext]'
+              }
+            },
+            { test: /\.(ttf|eot|svg)(\?v=[0-9]\.[0-9]\.[0-9])?$/, 
+              loader: "url-loader",
+              options: {
+                 name: './fonts/[name].[ext]'
+              }
             }
         ]
     },
@@ -75,7 +80,7 @@ module.exports = {
             toastr : "toastr"
         }),
         new ExtractTextPlugin("./css/styles.css"),
-        new UglifyJSPlugin(),
+        new UglifyJSPlugin({sourceMap: true}),
         new webpack.optimize.CommonsChunkPlugin({name: "vendor", filename: "./js/vendor.bundle.js"})
     
     ],
