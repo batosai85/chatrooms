@@ -10,7 +10,8 @@ module.exports = {
     },
     output: {
         path: path.join(__dirname, "build"),
-        filename: "./js/bundle.js"
+        filename: "./js/bundle.js",
+        publicPath : "build"
     },
     watch: true,
     devtool: "source-map",
@@ -25,10 +26,11 @@ module.exports = {
                 test: /\.css$/,
                 loader: ExtractTextPlugin.extract({
                     use : [{  
-                        loader : "css-loader",
-                        options : {url : false, minimize: true}
-                    },
-                           "autoprefixer"],
+                           loader : "css-loader",
+                           options : {url:false,minimize: true}
+                        },
+                        "autoprefixer-loader",
+                    ],
                     fallback: "style-loader"
                 }),
                 exclude: /node_modules/
@@ -37,10 +39,12 @@ module.exports = {
                 test: /\.less$/,
                 use: ExtractTextPlugin.extract({
                     use : [{  
-                        loader : "css-loader",
-                        options : {url:false, minimize: true}
-                    },
-                           "less-loader"],
+                            loader : "css-loader",
+                            options : {url:false,minimize: true}
+                          },     
+                          "autoprefixer-loader",
+                          "less-loader"
+                    ],
                     fallback: "style-loader"
                 }),
                 exclude: /node_modules/
@@ -54,7 +58,7 @@ module.exports = {
                 exclude: /node_modules/
             },
             {
-                test: /\.(svg|eot|ttf|woff|woff2)$/,
+                test: /\.(ttf|eot|svg|woff|woff2)(\?v=[0-9]\.[0-9]\.[0-9])?$/,
                 loader: "file-loader",
                 options: {
                     name: './fonts/[name].[ext]'
