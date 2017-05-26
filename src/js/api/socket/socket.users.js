@@ -26,11 +26,19 @@ export default function Socket_users(socket){
     });
 
     socket.on("user_login", function (data) {
-        if ($(".username").text() !== data) {
-            toastr.warning(`${data} is online`);
-            socket.emit("update_on_login");
+        if (window.location.href.indexOf("login") == -1) {
+            if ($(".username").text() !== data) {
+                let $arr = [];
+                $(".show-users li").each(function(){
+                    $arr.push($(this).text());
+                });
+                if($arr.indexOf($.trim(data)) === -1){
+                    toastr.warning(`${data} is online`);
+                    socket.emit("update_on_login");
+                }
+            }
         }
-    })
+    });
     socket.on("user_logout", function (data) {
         if ($(".username").text() !== data) {
             toastr.warning(`${data} is offline`);

@@ -33,7 +33,11 @@ export default function Get_messages(socket){
         }, 400);
     });
     
+    const $username = $(".username").text();
     socket.on("get_new_message", function (data) {
+        if ($.trim($username) != data.user) {
+             toastr.warning(`new message in ${data.room}`);
+        }
         $(".display").append(`<div class='show-message'><h4 class='username'>${data.user} :</h4><h5>${data.message}</h5></div>`);
         height += 50;
         $(".display").animate({

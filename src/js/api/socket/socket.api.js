@@ -12,7 +12,8 @@ export default function Socket_api(socket){
     $(".room").on("click", () => {
         $(".send").prop("disabled", false);
         $(".disabled").hide(500);
-        $(".disabled").hide(500);
+        $(".display").animate({opacity: "1"},500);
+        $(".delete").animate({opacity: "1"},500);
     });
     
 }
